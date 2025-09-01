@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Prof. Dr. Juliano H. Foleis",
+    "section": "",
+    "text": "Seja bem-vindo à minha página! Aqui você vai encontrar algumas notas de aula das disciplinas que ministro na Universidade Tecnológica Federal do Paraná, Campus Campo Mourão (UTFPR-CM)."
+  },
+  {
+    "objectID": "bcc4001-prob-ord.html",
+    "href": "bcc4001-prob-ord.html",
+    "title": "Resolução de Problemas usando Ordenação",
+    "section": "",
+    "text": "A ordenação é uma operação fundamental em Ciência da Computação. Em muitos casos, ordenar os dados pode simplificar a resolução de problemas aparentemente mais difíceis. Nesta aula serão apresentados os conceitos principais sobre ordenação e como ela pode ser usada na resolução de problemas.\nExistem muitos algoritmos de ordenação que variam bastante em relação ao seu funcionamento e desempenho. Entretanto, neste material não serão abordados algoritmos específicos de ordenação, mas sim o conceito geral de ordenação e como ele pode ser aplicado na resolução de problemas."
+  },
+  {
+    "objectID": "bcc4001-prob-ord.html#exemplo-vetor-de-inteiros",
+    "href": "bcc4001-prob-ord.html#exemplo-vetor-de-inteiros",
+    "title": "Resolução de Problemas usando Ordenação",
+    "section": "Exemplo – Vetor de Inteiros",
+    "text": "Exemplo – Vetor de Inteiros\nDado o vetor de inteiros \\(V = [4, 2, 7, 1, 3]\\), uma ordenação crescente de \\(V\\) resulta no vetor \\(V' = [1, 2, 3, 4, 7]\\). Note que os elementos em \\(V\\) são os mesmos que em \\(V'\\), apenas em uma ordem diferente. Também é relevante ressaltar que a ordenação crescente é consequência da relação \\(a \\leq b\\) entre dois inteiros quaisquer \\(a\\) e \\(b\\)."
+  },
+  {
+    "objectID": "bcc4001-prob-ord.html#exemplo-vetor-de-strings",
+    "href": "bcc4001-prob-ord.html#exemplo-vetor-de-strings",
+    "title": "Resolução de Problemas usando Ordenação",
+    "section": "Exemplo – Vetor de Strings",
+    "text": "Exemplo – Vetor de Strings\nDado o vetor de strings \\(S = [\\text{``banana''}, \\text{``abacaxi\"}, \\text{``laranja\"}]\\), uma ordenação lexicográfica (ordem alfabética) resulta no vetor \\(S' = [\\text{``abacaxi\"}, \\text{``banana\"}, \\text{``laranja\"}]\\). A relação usada para ordenar as strings é a ordem lexicográfica, que compara os caracteres das strings da esquerda para a direita em ordem alfabética."
+  },
+  {
+    "objectID": "bcc4001-prob-ord.html#exemplo-1-verificar-a-existência-de-elementos-duplicados-em-um-vetor",
+    "href": "bcc4001-prob-ord.html#exemplo-1-verificar-a-existência-de-elementos-duplicados-em-um-vetor",
+    "title": "Resolução de Problemas usando Ordenação",
+    "section": "Exemplo 1: Verificar a Existência de Elementos Duplicados em um Vetor",
+    "text": "Exemplo 1: Verificar a Existência de Elementos Duplicados em um Vetor\nDado um vetor V com n elementos quaisquer, verifique se há elementos duplicados no vetor. Por exemplo, para o vetor V = [1, 2, 3, 4, 5], a resposta é “não” (false), enquanto para o vetor V = [1, 2, 3, 4, 5, 3], a resposta é “sim” (true), uma vez que o elemento 3 aparece duas vezes no vetor. Os elementos do vetor podem ser permutaods durante a verificação.\n\nResolução por Força-Bruta\nUma solução força-bruta consiste em testar todas as possibilidades. Neste caso, envolve comparar todos os pares de elementos do vetor, verificando se algum par é igual. Segue o algoritmo implementado em C++.\ntemplate&lt;typename T&gt;\nbool temDuplicadosFB(vector&lt;T&gt; &V) {\n  int n = V.size();\n  for (int i = 0; i &lt; n; i++) {\n    for (int j = i + 1; j &lt; n; j++) {\n      if (V[i] == V[j]) {\n        return true;\n      }\n    }\n  }\n  return false;\n}\nComo há \\(\\frac{n^2+n}{2}\\) pares possíveis, no pior caso (quando apenas os elementos do ultimo par forem iguais) o custo deste algoritmo é proporcional ao quadrado do número de elementos do vetor! Ou seja, se o vetor for muito grande, este algoritmo vai demorar muito pra terminar.\n\n\nResolução Usando Ordenação\nO que acontece se ordenarmos o vetor? Sabemos, pela Def. 1 (Ordenação), que o vetor assume a ordem imposta. Como consequência, os elementos que são iguais ocuparão posições adjacentes! Com isso, o problema de verificação de duplicadas se reduz a verificar se há elementos adjacentes iguais! Segue o algoritmo implementado em C++.\ntemplate&lt;typename T&gt;\nbool temDuplicadosOrd(vector&lt;T&gt; &V) {\n    sort(V.begin(), V.end()); // Ordena o vetor\n    int n = V.size();\n    for (int i = 0; i &lt; n - 1; i++) {\n        if (V[i] == V[i + 1]) { // Verifica elementos adjacentes\n            return true;\n        }\n    }\n    return false;\n}\nA ordenação do vetor pode ser feita em tempo \\(n \\log n\\) (usando um algoritmo de ordenação eficiente), e a verificação de elementos adjacentes em tempo \\(n\\). Portanto, o custo total deste algoritmo é proporcional a \\(n \\log n\\), que é significativamente melhor do que o custo \\(n^2\\) do algoritmo força-bruta."
+  },
+  {
+    "objectID": "bcc4001-prob-ord.html#exemplo-2-k-ésimo-maior",
+    "href": "bcc4001-prob-ord.html#exemplo-2-k-ésimo-maior",
+    "title": "Resolução de Problemas usando Ordenação",
+    "section": "Exemplo 2: K-ésimo Maior",
+    "text": "Exemplo 2: K-ésimo Maior\nDado um vetor \\(V\\) com \\(n\\) elementos inteiros positivos quaisquer e sem repetições, retorne o k-ésimo maior elemento do vetor. Por exemplo, se \\(k=1\\), deve-se retornar o maior elemento do vetor, com \\(k=2\\) retorna-se o segundo maior elemento do vetor, e assim por diante. Caso o vetor tenha menos que \\(k\\) elementos, retorne -1. Os elementos do vetor podem ser permutados durante a busca.\n\nResolução por Força-Bruta\nUma solução por força-bruta para este problema consiste em encontrar primeiramente o maior elemento entre as posições 0 e n-1. Considere que este primeiro elemento foi encontrado na posição p. Ele então é trocado com a posição n-1. Se k==1, retorna-se v[n-1]. Caso contrário, a posição do próximo maior elemento é encontrada (posição p) e seu valor é trocado com a posição V[n-2], que é retornado caso k==2. Este algoritmo é repetido k vezes. A implementação em C++ é mostrada a seguir.\nint kesimoMaior(std::vector&lt;int&gt; &V, int k){\n    int n = V.size();\n    if(k &gt; n) return -1;\n    for(int i = 1; i &lt;= k; i++){\n        int maior = 0;\n        for(int j = 1; j &lt;= (n-i); j++){\n            if(V[j] &gt; V[maior]){\n                maior = j;\n            }\n        }\n        std::swap(V[n-i], V[maior]);\n        if(k == i)\n            return V[n-i];\n    }\n    return -1;\n}\nO custo deste algoritmo é proporcional a \\(k \\cdot n\\). Portanto, se \\(k\\) for grande suficiente (próximo de n), este algoritmo tem custo quadrático, o que é muito ineficiente para \\(n\\) grande.\n\n\nResolução Usando Ordenação\nO que acontece se ordenarmos o vetor? Sabemos, pela Def. 1 (Ordenação), que o vetor assume a ordem imposta. Portanto, \\(v_0' \\leq v_1' \\leq v_2' \\leq \\dots \\leq v_{n-1}'\\). Com isto, podemos inferir que, após a ordenação, o maior elemento do vetor estará na posição n-1, o segundo maior na posição n-2, e assim por diante! Com isto, o problema de encontrar o k-ésimo maior é simplificado para o acesso direto à posição do qual o k-ésimo elemento deve ocupar. A implementação em C++ é mostrada a seguir.\nint kesimoMaiorOrd(std::vector&lt;int&gt; &V, int k){\n    int n = V.size();\n    if(k &gt; n) return -1;\n    std::sort(V.begin(), V.end()); // Ordena o vetor\n    return V[n-k]; // Retorna o k-ésimo maior\n}\nO custo deste algoritmo é o custo de ordenar o vetor. Usando um algoritmo de ordenação eficiente, é possível obter o vetor ordenado em \\(n \\lg n\\). Portanto, o custo total deste algoritmo é proporcional a \\(n \\log n\\), que é significativamente melhor do que o custo \\(n^2\\) do algoritmo força-bruta."
+  },
+  {
+    "objectID": "bcc4001-aed2.html",
+    "href": "bcc4001-aed2.html",
+    "title": "Algoritmos e Estruturas de Dados 2",
+    "section": "",
+    "text": "Notas de Aula\nAcesse as aulas abaixo:\n\nResolução de Problemas usando Ordenação"
+  }
+]
